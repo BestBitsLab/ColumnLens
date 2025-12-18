@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Columnlens
   module Core
     class UsageScanner

@@ -20,12 +20,12 @@ module Columnlens
       @config.system_table_patterns.any? { |p| table.match?(p) }
     end
 
-    def ignored?(r)
+    def ignored?(record)
       @config.ignored?(
         mode: @mode,
-        category: r[:status],
-        table: r[:table],
-        column: r[:column]
+        category: record[:status],
+        table: record[:table],
+        column: record[:column]
       )
     end
   end

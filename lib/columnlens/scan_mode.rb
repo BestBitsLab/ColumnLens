@@ -8,6 +8,7 @@ require_relative "ignore_rules"
 require_relative "result_filter"
 require_relative "reporter"
 
+# Handles scanning the database schema and classifying column usage.
 module Columnlens
   class ScanMode
     MODE = :scan
@@ -43,7 +44,7 @@ module Columnlens
     end
 
     def self.filter_results(results)
-      config  = IgnoreRules.new(Config.load)
+      config = IgnoreRules.new(Config.load)
       ResultFilter.new(config, mode: MODE).filter(results)
     end
   end

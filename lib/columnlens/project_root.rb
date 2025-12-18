@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Columnlens
   module ProjectRoot
     def self.detect

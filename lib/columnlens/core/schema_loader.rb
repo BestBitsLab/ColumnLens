@@ -11,9 +11,7 @@ module Columnlens
       def self.load
         schema_path = File.join(ProjectRoot.detect, "db/schema.rb")
 
-        unless File.exist?(schema_path)
-          raise "Columnlens: db/schema.rb not found at #{schema_path}"
-        end
+        raise "Columnlens: db/schema.rb not found at #{schema_path}" unless File.exist?(schema_path)
 
         schema_content = File.read(schema_path)
         parse_tables(schema_content)
