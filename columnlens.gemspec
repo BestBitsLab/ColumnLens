@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email = ["wongwf82@gmail.com"]
 
   spec.summary = "Detect unused, read-only, and orphaned database columns in Rails apps"
-  spec.description           = <<~DESC
+  spec.description = <<~DESC
     ColumnLens analyzes your Ruby on Rails codebase and database schema
     to identify actively used, write-only, read-only, and orphaned columns.
     Designed for CI, GitHub Actions, and continuous schema hygiene.

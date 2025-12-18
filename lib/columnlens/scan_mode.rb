@@ -16,24 +16,35 @@ module Columnlens
       puts "🔍 Columnlens Scan Mode"
       puts "Scanning full schema...\n\n"
 
-      schema = Core::SchemaLoader.load
+      results = process_schema
 
-      scanner = Core::UsageScanner.new(
-        schema.map { |table, columns| { name: table, columns: columns } }
-      )
+      Reporter.print(results)
+    end
 
-      raw = scanner.scan!
+    def self.process_schema
+      schema  = Core::SchemaLoader.load
+      scanner = Core::UsageScanner.new(map_tables(schema))
+      raw     = scanner.scan!
 
-      results = raw.flat_map do |table, columns|
+      results = classify_columns(raw)
+      filter_results(results)
+    end
+
+    def self.map_tables(schema)
+      schema.map { |table, columns| { name: table, columns: columns } }
+    end
+
+    def self.classify_columns(raw)
+      raw.flat_map do |table, columns|
         columns.map do |column, usage|
           Classifier.classify(table, column, usage)
         end
       end
+    end
 
+    def self.filter_results(results)
       config  = IgnoreRules.new(Config.load)
-      results = ResultFilter.new(config, mode: MODE).filter(results)
-
-      Reporter.print(results)
+      ResultFilter.new(config, mode: MODE).filter(results)
     end
   end
 end

@@ -22,10 +22,10 @@ module Columnlens
 
     def ignored?(r)
       @config.ignored?(
-        mode:     @mode,
+        mode: @mode,
         category: r[:status],
-        table:    r[:table],
-        column:   r[:column]
+        table: r[:table],
+        column: r[:column]
       )
     end
   end

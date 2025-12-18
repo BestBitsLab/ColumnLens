@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Columnlens
   class Classifier
     def self.classify(table, column, usage)

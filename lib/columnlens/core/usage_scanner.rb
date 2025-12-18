@@ -58,7 +58,7 @@ module Columnlens
       end
 
       # Scan Ruby + view templates
-      def scanned_in_code?(table_name, column)
+      def scanned_in_code?(_table_name, column)
         patterns = [
           "app/models/**/*.rb",
           "app/controllers/**/*.rb",

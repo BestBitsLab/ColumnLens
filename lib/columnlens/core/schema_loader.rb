@@ -15,12 +15,15 @@ module Columnlens
           raise "Columnlens: db/schema.rb not found at #{schema_path}"
         end
 
-        schema = File.read(schema_path)
+        schema_content = File.read(schema_path)
+        parse_tables(schema_content)
+      end
 
+      def self.parse_tables(schema_content)
         tables = {}
         current_table = nil
 
-        schema.each_line do |line|
+        schema_content.each_line do |line|
           if line.match?(TABLE_REGEX)
             current_table = line[TABLE_REGEX, 1]
             tables[current_table] ||= []
