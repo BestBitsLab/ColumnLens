@@ -1,0 +1,10 @@
+system_tables:
+  - "^active_storage_"
+  - "^schema_migrations$"
+  - "^ar_internal_metadata$"
+
+ignore:
+  scan:
+    orphaned: []
+  deep:
+    orphaned: []
